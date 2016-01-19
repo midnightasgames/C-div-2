@@ -51,6 +51,7 @@ public class Game extends JPanel implements Runnable, ApproximateKeyListener {
 	public void init() {
 		currentState = new StateMenu();
 		game.addKeyListener(new RepetitiveKeyListener());
+		game.addMouseListener(new CDiv2MouseListener());
 		Keys.KEYS_APPROXIMATE.approximateKeyListeners.add(this);
 		for (char c = 65; c < 123; c++) {
 			final char cDuplicate = c;
@@ -161,6 +162,10 @@ public class Game extends JPanel implements Runnable, ApproximateKeyListener {
 
 	public void setState(State newState) {
 		this.currentState = newState;
+	}
+	
+	public State getState() {
+		return this.currentState;
 	}
 
 	// Getters & Setters -- END

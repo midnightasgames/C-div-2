@@ -16,4 +16,8 @@ public class GraphicsUtils {
 		return g.getFontMetrics().stringWidth(s);
 	}
 	
+	public static int stringHeight(Graphics2D g, String s) {
+		return (int) g.getFont().getLineMetrics(s, g.getFontRenderContext()).getHeight();
+	}
+	
 }

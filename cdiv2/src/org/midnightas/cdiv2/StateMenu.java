@@ -3,6 +3,7 @@ package org.midnightas.cdiv2;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class StateMenu extends State implements ApproximateKeyListener {
@@ -18,9 +19,7 @@ public class StateMenu extends State implements ApproximateKeyListener {
 
 	@Override
 	public void render(Graphics2D g) {
-		for (int x = 0; x < getWidth(); x += 32)
-			for (int y = 0; y < getHeight(); y += 32)
-				g.drawImage(GlobalResources.IMAGE_PAPERBRICK_BG, x, y, 32, 32, null);
+		super.drawBrickBackground(g);
 		if (!Game.getGame().showCopyright()) {
 			g.drawImage(IMAGE_LOGO, getWidth() / 2 - IMAGE_LOGO.getWidth(), getHeight() / 8, IMAGE_LOGO.getWidth() * 2,
 					IMAGE_LOGO.getHeight() * 2, null);
@@ -46,6 +45,8 @@ public class StateMenu extends State implements ApproximateKeyListener {
 			if (character == KeyEvent.VK_ENTER) {
 				if(selectedOption == 1)
 					Game.getGame().setState(new StateCourseSelection());
+				else if(selectedOption == 2)
+					Game.getGame().setState(new StateOwnedCoursesSelection());
 			} else if (character == KeyEvent.VK_DOWN) {
 				if (selectedOption == amountOfOptions)
 					selectedOption = 1;
@@ -58,6 +59,12 @@ public class StateMenu extends State implements ApproximateKeyListener {
 					selectedOption--;
 			}
 		}
+	}
+
+	@Override
+	public void mouseEvent(MouseEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
